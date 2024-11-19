@@ -6,7 +6,7 @@ if __name__ == "__main__":
     
     # Chercher les noms des fichiers dans un dossier
     f = []
-    for (dirpath, dirnames, filenames) in os.walk(r"C:\Users\moham\OneDrive\Bureau\Nouveau dossier"):
+    for (dirpath, dirnames, filenames) in os.walk(r"path"):
         f.append(filenames)
         break
     print(f[0])
@@ -28,19 +28,19 @@ if __name__ == "__main__":
     # file1 = open(completeName, "w")
     
     # Créer un nouveau dossier
-    # os.makedirs(r"C:\Users\moham\OneDrive\Bureau\Nouveau dossier\Name of the folder")
+    # os.makedirs(r"path")
     
     count = Counter(types)
     
     try:
         for i in count.keys():
-            fo = fr"C:\Users\moham\OneDrive\Bureau\Nouveau dossier\{i}"
+            fo = fr"path\{i}"
             os.makedirs(fo)
     except:
         print('nop')
     try:
         for j in range(len(files)):
             if types[j] == ".py":
-                shutil.move(r"C:\Users\moham\OneDrive\Bureau\Nouveau dossier\main.py", r"C:\Users\moham\OneDrive\Bureau\Nouveau dossier\.py")
+                shutil.move(r"path\.py")
     except:
         print("uw")
