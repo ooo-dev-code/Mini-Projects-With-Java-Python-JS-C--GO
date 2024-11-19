@@ -1,3 +1,5 @@
+# NOTE FOR ME : TO TRANSLATE
+
 import os
 import shutil
 from collections import Counter
