@@ -6,3 +6,4 @@ List of Projects and reason of creation:
 
 - Get_hour
 - IMC_calculator
+- RockPaperScissors
