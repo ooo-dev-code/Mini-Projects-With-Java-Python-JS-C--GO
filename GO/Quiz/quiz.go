@@ -1,27 +1,36 @@
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+)
 
 func main() {
-	var name string
-	var age uint64
 	var score int8
 
+	scanner := bufio.NewScanner(os.Stdin)
+
 	fmt.Println("What's your name ?")
-	fmt.Scan(&name)
+	scanner.Scan()
+	name := scanner.Text()
 	fmt.Println("What a funny name! \n")
 	fmt.Println("How old are you ?")
-	fmt.Scan(&age)
+	scanner.Scan()
+	age, _ := strconv.ParseInt(scanner.Text(), 10, 64)
 
 	if age <= 18 {
 		fmt.Println("You are not old enough to play!")
 		return
 
-	} else if age >= 18 && age <= 127  {
+	} 
+	if age >= 18 && age <= 127  {
 		fmt.Printf("Welcome to my quiz %v. \n", name)
 		question1(name, score)
 
-	} else {
+	} 
+	if age > 128 {
 		fmt.Printf("You are too old to be alive %v...", name)
 		return
 	}
@@ -29,9 +38,12 @@ func main() {
 }
 
 func question1(name string, score int8) {
+	
 	fmt.Printf("%v, what is better, Angular or React ? \n", name)
-	var answer string
-	fmt.Scan(&answer)
+
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	answer := scanner.Text()
 
 	if answer == "Angular" {
 		fmt.Println("Incorrect")
@@ -49,9 +61,12 @@ func question1(name string, score int8) {
 	}
 }
 func question2(name string, score int8) {
+
 	fmt.Printf("%v, what is faster, Java or Python ? \n", name)
-	var answer string
-	fmt.Scan(&answer)
+
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	answer := scanner.Text()
 
 	if answer == "Python" {
 		fmt.Println("Incorrect")
@@ -69,9 +84,12 @@ func question2(name string, score int8) {
 	}
 }
 func question3(name string, score int8) {
+
 	fmt.Printf("%v, who have the cutest mascot, Go or Rust ? \n", name)
-	var answer string
-	fmt.Scan(&answer)
+
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	answer := scanner.Text()
 
 	if answer == "Rust" {
 		fmt.Println("Incorrect")
@@ -81,22 +99,22 @@ func question3(name string, score int8) {
 		fmt.Println("Correct")
 		score := score + 1
 		fmt.Printf("Score: %v \n", score)
-		fmt.Printf("You got %v/3", score) 
-		var retry string
+		fmt.Printf("You got %v/3 \n", score) 
 		
 		if score == 3 {
 			fmt.Println("You got the max score. Congratulations !!!")
 			return 
 		} else {
 			fmt.Println("Do you want to retry ? (Y/N)")
-			fmt.Scan(&retry)
+			scanner.Scan()
+			retry := scanner.Text()
 			if retry == "Y" {
 				main()
 			} else {
 				return
 			}
 		} 
-		
+
 	} else {
 		fmt.Println("Please choose a valid answer")
 		question3(name, score)
