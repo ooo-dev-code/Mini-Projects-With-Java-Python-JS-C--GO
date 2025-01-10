@@ -1,3 +1,3 @@
 # Python
 
-<h2>Best Projects:</h2>
+<h2><b>Best Projects:</b></h2>
