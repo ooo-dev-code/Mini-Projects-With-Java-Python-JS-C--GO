@@ -1,58 +1,19 @@
-<script>
-const hide = document.getElementById("hide")
-const player = document.getElementById("player")
-const playerChoice = document.getElementById("playerChoice")
-let result = document.getElementById("result")
-const computer = document.getElementById("computer")
-let computerChoiceDisplay = document.getElementById("computerChoiceDisplay")
-let computerChoices
-choices = document.querySelectorAll(".rock, .paper, .scissors")
+function playGame(userChoice) {
+    const choices = ['rock', 'paper', 'scissors'];
+    const computerChoice = choices[Math.floor(Math.random() * 3)];
+    let result = '';
 
-const win = () => {
-        hide.className = "win"
-        choices.forEach((choice) => {
-            choice.style.visibility = "hidden"
-    })
+    if (userChoice === computerChoice) {
+        result = 'It\'s a DRAW!';
+    } else if (
+        (userChoice === 'rock' && computerChoice === 'scissors') ||
+        (userChoice === 'paper' && computerChoice === 'rock') ||
+        (userChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+        result = 'You win !!!!';
+    } else {
+        result = 'You lose...';
+    }
+
+    document.getElementById('result').innerText = `You chose ${userChoice}, computer chose ${computerChoice}. ${result}`;
 }
-
-const generateResponse = () => {
-
-        let computerChoice = Math.floor(Math.random() * 3) + 1
-
-        if (computerChoice === 1) {
-                computerChoiceDisplay.innerHTML = "rock"
-                console.log(computerChoice)
-
-        }
-        if (computerChoice === 2) {
-                computerChoiceDisplay.innerHTML = "scissors"
-                console.log(computerChoice)
-
-        }
-        if (computerChoice === 3) {
-                computerChoiceDisplay.innerHTML = "paper"
-                console.log(computerChoice)
-
-        }
-        
-        if (computerChoiceDisplay.innerHTML == playerChoice.innerHTML){
-                result.innerHTML = "Draw"
-        }
-        if (computerChoiceDisplay.innerHTML == "paper" & playerChoice.innerHTML == "scissors" || computerChoiceDisplay.innerHTML == "scissors" & playerChoice.innerHTML == "rock" || computerChoiceDisplay.innerHTML == "rock" & playerChoice.innerHTML == "paper"){
-                result.innerHTML = "Win"
-                win()
-        }
-        if (computerChoiceDisplay.innerHTML == "scissors" & playerChoice.innerHTML == "paper" || computerChoiceDisplay.innerHTML == "paper" & playerChoice.innerHTML == "rock" || computerChoiceDisplay.innerHTML == "rock" & playerChoice.innerHTML == "scissors"){
-                result.innerHTML = "Lose"
-        }
-}
-
-choices.forEach((choice) => {
-        choice.addEventListener("click", () => {
-                playerChoice.innerHTML = choice.innerHTML
-                generateResponse()
-        })
-})
-
-
-</script>
