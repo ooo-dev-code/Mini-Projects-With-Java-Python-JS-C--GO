@@ -1,6 +1,7 @@
 from tkinter import *
 import ctypes
 
+# get screen size
 user32 = ctypes.windll.user32
 width = user32.GetSystemMetrics(0)
 height = user32.GetSystemMetrics(1)
@@ -14,7 +15,8 @@ class App():
         self.w.resizable(False, False)
         self.w.configure(bg="white")
         self.w.geometry(f"+0+0")
-        
+
+        # app variables
         self.level_num = 1
         level = Frame(self.w, bg="black", width=width, height=100)   
         level.pack(side=TOP, fill=X)
@@ -43,10 +45,12 @@ class App():
             "As-tu eu des hallucinations / des voix / des crises cette semaine?",
             "Combien d'heure par nuit dors-tu?",
         ]
+        # write here your past experiences
         self.past = [
             
         ]
-        
+
+        # 
         def draw(responses):
             self.questions = Label(self.w, text=f"{self.question[self.level_num-1]}", font=("Arial", 15), bg="white", fg="black")
             self.questions.pack(side=TOP, anchor="nw")
