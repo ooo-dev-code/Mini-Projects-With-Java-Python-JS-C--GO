@@ -50,7 +50,7 @@ class App():
             
         ]
 
-        # 
+        # app
         def draw(responses):
             self.questions = Label(self.w, text=f"{self.question[self.level_num-1]}", font=("Arial", 15), bg="white", fg="black")
             self.questions.pack(side=TOP, anchor="nw")
