@@ -85,7 +85,8 @@ class App():
             else:
                 self.response_box.destroy()
                 result()
-        
+
+        # show result for the score
         def result():
             self.questions.destroy()
             self.response_box.destroy()
