@@ -14,7 +14,8 @@ class App():
         self.w.resizable(False, False)
         self.w.configure(bg="white")
         self.w.geometry(f"+0+0")
-        
+
+        # App variables
         self.level_num = 1
         level = Frame(self.w, bg="darkblue", highlightbackground="lightblue", highlightthickness=10, width=width, height=100)   
         level.pack(side=TOP, fill=X)
@@ -48,7 +49,8 @@ class App():
         self.past = [
             
         ]
-        
+
+        # App
         def draw(responses):
             self.questions = Label(self.w, text=f"{self.level_num}. {self.question[self.level_num-1]}", font=("Times New Roman", 25), bg="white", fg="black")
             self.questions.pack(side=TOP, anchor="center")
@@ -90,7 +92,8 @@ class App():
             else:
                 self.response_box.destroy()
                 result()
-        
+
+        # Show the result with your score
         def result():
             self.questions.destroy()
             self.response_box.destroy()
