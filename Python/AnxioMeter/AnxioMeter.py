@@ -14,8 +14,7 @@ class App():
         self.w.resizable(False, False)
         self.w.configure(bg="white")
         self.w.geometry(f"+0+0")
-
-        # App variables
+        
         self.level_num = 1
         level = Frame(self.w, bg="darkblue", highlightbackground="lightblue", highlightthickness=10, width=width, height=100)   
         level.pack(side=TOP, fill=X)
@@ -49,8 +48,7 @@ class App():
         self.past = [
             
         ]
-
-        # App
+        
         def draw(responses):
             self.questions = Label(self.w, text=f"{self.level_num}. {self.question[self.level_num-1]}", font=("Times New Roman", 25), bg="white", fg="black")
             self.questions.pack(side=TOP, anchor="center")
@@ -92,8 +90,7 @@ class App():
             else:
                 self.response_box.destroy()
                 result()
-
-        # Show the result with your score
+        
         def result():
             self.questions.destroy()
             self.response_box.destroy()
@@ -102,20 +99,44 @@ class App():
             result.pack(anchor="center", pady=30)
             
             if self.score > 145:
-                title = Label(self.w, text="Repos URGENT !! PRENDS TON WEEK-END", font=("Arial", 75), bg="white", fg="black")
-                title.pack()
+                messages = "Repos URGENT !! PRENDS TON WEEK-END"
             elif self.score < 145 and self.score >= 92:
-                title = Label(self.w, text="Repos d' 1 heure max obligatoire", font=("Arial", 75), bg="white", fg="black")
-                title.pack()
+                messages = "Repos d' 1 heure max obligatoire"
             elif self.score < 92 and self.score >= 48:
-                title = Label(self.w, text="Repos recommandé", font=("Arial", 75), bg="white", fg="black")
-                title.pack()
+                messages = "Repos recommandé"
             elif self.score < 48 and self.score >= 24:
-                title = Label(self.w, text="Repos si besoin", font=("Arial", 75), bg="white", fg="black")
-                title.pack()
+                messages = "Repos si besoin"
             else:
-                title = Label(self.w, text="Tout va bien", font=("Arial", 75), bg="white", fg="black")
-                title.pack()
+                messages = "Tout va bien"
+                
+            title = Label(self.w, text=f"{messages}", font=("Arial", 75), bg="white", fg="black")
+            title.pack()
+            
+            register = Button(self.w, text="Enregistrer le score", font=("Arial", 75), bg="lightgreen", fg="black", command=lambda score=self.score, past=messages: reg(score, past))
+            register.pack()
+            
+            look = Button(self.w, text="Regarder l'historique des scores", font=("Arial", 75), bg="green", fg="white", command=look_scores)
+            look.pack()
+        
+        def reg(score, past):
+            with open("scores.txt", "a") as file:
+                file.write(f"(\n Score: {score}\n message: {past}\n)\n")
+        
+        def look_scores():
+            def display_scores():
+                
+                with open("scores.txt", "r") as file:
+                    scores = file.read()
+                scores_window = Toplevel(self.w)
+                scores_window.title("Scores History")
+                scores_window.geometry(f"{width}x{height}")
+                scores_window.resizable(False, False)
+                scores_window.configure(bg="white")
+                
+                scores_label = Label(scores_window, text=scores, font=("Arial", 20), bg="white", fg="black", justify=LEFT)
+                scores_label.pack(padx=10, pady=10, fill=BOTH, expand=True)
+            
+            display_scores()
         
         draw(self.responses[self.level_num])
             
